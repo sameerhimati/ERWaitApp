@@ -15,3 +15,6 @@ venv/
 # Other files
 *.log
 backend/config.py
+*/.eslintcache
+*/*.json
+*/node_modules
