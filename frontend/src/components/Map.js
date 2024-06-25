@@ -1,35 +1,28 @@
-import React from 'react';
-import { GoogleMap, Marker } from '@react-google-maps/api';
-
-const containerStyle = {
-  width: '800px',
-  height: '600px'
-};
-
-const center = {
-  lat: -3.745,
-  lng: -38.523
-};
+import React, { useEffect, useRef } from 'react';
 
 const Map = ({ hospitals }) => {
-  return (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
-    >
-      {hospitals.map(hospital => (
-        <Marker
-          key={hospital.id}
-          position={{
-            lat: parseFloat(hospital.latitude), // assuming latitude field is in the DB
-            lng: parseFloat(hospital.longitude) // assuming longitude field is in the DB
-          }}
-          label={hospital.wait_time}
-        />
-      ))}
-    </GoogleMap>
-  );
-}
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    const google = window.google;
+    const map = new google.maps.Map(mapRef.current, {
+      center: { lat: 37.7749, lng: -122.4194 }, // Default center
+      zoom: 12,
+    });
+
+    hospitals.forEach(hospital => {
+      new google.maps.Marker({
+        position: {
+          lat: hospital.latitude,
+          lng: hospital.longitude,
+        },
+        map,
+        title: hospital.name,
+      });
+    });
+  }, [hospitals]);
+
+  return <div ref={mapRef} style={{ height: '100vh', width: '100%' }} />;
+};
 
 export default Map;

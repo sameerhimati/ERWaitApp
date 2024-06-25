@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Hospital ER Wait Times</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ER Wait Times</title>
   </head>
   <body>
     <div id="root"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlzyw4M79Sy9Ie0NB0m9Npq7GdDLkhqS8"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places"
+      async
+      defer
+    ></script>
   </body>
 </html>
+

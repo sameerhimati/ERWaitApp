@@ -18,10 +18,12 @@ const App = () => {
       });
   }, []);
 
+  const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
   return (
     <div className="App">
       <h1>Hospital ER Wait Times</h1>
-      <LoadScript googleMapsApiKey="AIzaSyAlzyw4M79Sy9Ie0NB0m9Npq7GdDLkhqS8">
+      <LoadScript googleMapsApiKey={googleMapsApiKey}>
         <Map hospitals={hospitals} />
       </LoadScript>
       <HospitalList hospitals={hospitals} />

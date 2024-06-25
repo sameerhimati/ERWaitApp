@@ -1,8 +1,8 @@
 from flask import Flask
+from flask_cors import CORS
 from config import config
 from models import db, HospitalWaitTimes
 from routes import main
-from flask_cors import CORS
 
 def create_app(config_name):
     app = Flask(__name__)
